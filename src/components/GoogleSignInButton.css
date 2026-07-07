@@ -1,0 +1,31 @@
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.25rem 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(75, 85, 99, 0.45);
+}
+
+.auth-divider span {
+  color: #9ca3af;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.google-login-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.google-login-wrap--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
