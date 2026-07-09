@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../services/api';
+import { encryptAes } from '../utils/crypto';
 import PasswordInput from '../components/PasswordInput';
 import './Login.css';
 
@@ -61,7 +62,10 @@ function ResetPassword() {
     setIsSubmitting(true);
 
     try {
-      await resetPassword({ token, password: form.password });
+      await resetPassword({
+        token,
+        password: encryptAes(form.password),
+      });
       setStatus({
         type: 'success',
         message: 'Password reset successful. You can now sign in.',

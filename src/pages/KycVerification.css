@@ -1,5 +1,5 @@
 .kyc-panel {
-  max-width: 720px;
+  max-width: 1024px;
   background: rgba(17, 24, 39, 0.85);
   border: 1px solid rgba(75, 85, 99, 0.35);
   border-radius: 12px;
@@ -26,8 +26,26 @@
   letter-spacing: 0.05em;
   padding: 0.25rem 0.625rem;
   border-radius: 999px;
+}
+
+.kyc-status-pill--not_submitted {
+  background: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+
+.kyc-status-pill--pending {
   background: rgba(245, 158, 11, 0.15);
   color: #fcd34d;
+}
+
+.kyc-status-pill--approved {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+}
+
+.kyc-status-pill--rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
 }
 
 .kyc-alert {
@@ -43,6 +61,18 @@
   color: #fca5a5;
 }
 
+.kyc-alert--success {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+
+.kyc-alert--info {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+
 .kyc-form {
   display: flex;
   flex-direction: column;
@@ -53,6 +83,32 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
+}
+
+.kyc-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.kyc-form .form-group input[type='file'] {
+  padding: 0.55rem;
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px dashed rgba(75, 85, 99, 0.7);
+  border-radius: 8px;
+  color: #d1d5db;
+  font-size: 0.85rem;
+}
+
+.kyc-file-name {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.kyc-upload-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #6b7280;
 }
 
 .kyc-form .form-group {
@@ -127,6 +183,10 @@
 @media (max-width: 600px) {
   .kyc-panel {
     padding: 1.25rem;
+  }
+
+  .kyc-upload-grid {
+    grid-template-columns: 1fr;
   }
 
   .kyc-form-actions {

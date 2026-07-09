@@ -61,7 +61,8 @@ function TraderDashboard({ user }) {
 
   const isPositivePnL = data.dayPnL >= 0;
   const firstName = user?.name?.split(' ')[0] || 'Trader';
-  const isKycVerified = Boolean(user?.kycVerified);
+  const isKycVerified = Boolean(user?.kycVerified) || user?.kycStatus === 'approved';
+  const isKycPending = user?.kycStatus === 'pending';
 
   return (
     <DashboardLayout user={user} roleLabel="Trader">
@@ -80,20 +81,22 @@ function TraderDashboard({ user }) {
               alert('Stock buy flow can be added here.');
             }}
           >
-            {isKycVerified ? 'Buy Stocks' : 'Complete KYC to Buy Stocks'}
+            {isKycVerified ? 'Buy Stocks' : isKycPending ? 'KYC Pending Approval' : 'Complete KYC to Buy Stocks'}
           </button>
         </div>
       </section>
 
       {!isKycVerified && (
-        <section className="kyc-warning">
-          KYC verification is required before buying stocks.
+        <section className={`kyc-warning${isKycPending ? ' kyc-warning--pending' : ''}`}>
+          {isKycPending
+            ? 'Your KYC documents are submitted and waiting for admin approval.'
+            : 'KYC verification is required before buying stocks.'}
           <button
             type="button"
             className="kyc-warning-link"
             onClick={() => navigate('/kyc-verification')}
           >
-            Verify KYC now
+            {isKycPending ? 'View KYC status' : 'Verify KYC now'}
           </button>
         </section>
       )}

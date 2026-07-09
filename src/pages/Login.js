@@ -3,6 +3,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { googleTradingLogin, loginTradingAccount } from '../services/api';
 import { setAuth } from '../utils/auth';
+import { encryptAes } from '../utils/crypto';
 import PasswordInput from '../components/PasswordInput';
 import './Login.css';
 
@@ -75,7 +76,10 @@ function Login() {
     setIsSubmitting(true);
 
     try {
-      const data = await loginTradingAccount(form);
+      const data = await loginTradingAccount({
+        email: form.email,
+        password: encryptAes(form.password),
+      });
       handleAuthSuccess(data);
     } catch (error) {
       setStatus({

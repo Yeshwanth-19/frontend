@@ -202,6 +202,47 @@
   font-size: 0.92rem;
 }
 
+.kyc-warning--pending {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: rgba(59, 130, 246, 0.12);
+  color: #93c5fd;
+}
+
+.dashboard-success {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+}
+
+.kyc-admin-loading,
+.kyc-admin-empty {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.92rem;
+}
+
+.kyc-doc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.kyc-doc-links a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.82rem;
+}
+
+.kyc-doc-links a:hover {
+  text-decoration: underline;
+}
+
+.kyc-admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .kyc-warning-link {
   background: transparent;
   border: 1px solid rgba(245, 158, 11, 0.6);

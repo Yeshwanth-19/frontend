@@ -1,4 +1,11 @@
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_ORIGIN = API_BASE_URL.replace(/\/api\/?$/, '');
+
+export function getUploadUrl(filePath) {
+  if (!filePath) return '';
+  if (filePath.startsWith('http')) return filePath;
+  return `${API_ORIGIN}${filePath}`;
+}
 
 async function parseResponse(response) {
   const data = await response.json().catch(() => ({}));
@@ -62,6 +69,36 @@ export async function resetPassword({ token, password }) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token, password }),
+  });
+
+  return parseResponse(response);
+}
+
+export async function submitKycVerification(formData, token) {
+  const response = await fetch(`${API_BASE_URL}/auth/kyc`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  return parseResponse(response);
+}
+
+export async function getPendingKycSubmissions(token) {
+  const response = await fetch(`${API_BASE_URL}/auth/kyc/pending`, {
+    headers: authHeaders(token),
+  });
+
+  return parseResponse(response);
+}
+
+export async function updateKycStatus({ userId, status, rejectionReason }, token) {
+  const response = await fetch(`${API_BASE_URL}/auth/kyc/${userId}/status`, {
+    method: 'PATCH',
+    headers: authHeaders(token),
+    body: JSON.stringify({ status, rejectionReason }),
   });
 
   return parseResponse(response);
